@@ -25,7 +25,7 @@ static const routeName = '/cart';
               children: <Widget> [
                 Text('Total', style: TextStyle(fontSize: 20),),
                 Spacer(),
-                Chip(label: Text('\$${cart.totalAmount}',
+                Chip(label: Text('\$${cart.totalAmount.toStringAsFixed(2)}',
                 style: TextStyle(
                   color: Theme.of(context).primaryTextTheme.title!.color,
                 ),),
