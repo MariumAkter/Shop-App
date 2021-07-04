@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import './cart.dart';
+
 class OrderItem {
   final String id;
   final double amount;
@@ -22,11 +23,15 @@ class Orders with ChangeNotifier{
     return [..._orders];
   }
   void addOrder(List<CartItem> cartProducts, double total){
-    _orders.insert(0,
-        OrderItem(id: DateTime.now().toString(),
+    _orders.insert(
+        0,
+        OrderItem(
+            id: DateTime.now().toString(),
             amount: total,
+            dateTime: DateTime.now(),
             productId: cartProducts,
-            dateTime: DateTime.now(),),);
+            ),
+    );
     notifyListeners();
   }
 
