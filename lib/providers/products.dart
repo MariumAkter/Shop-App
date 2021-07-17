@@ -67,7 +67,7 @@ class Products with ChangeNotifier {
   // }
 
   Future<void> addProduct(Product product) {
-    final url = Uri.parse('https://shop-app-903e5-default-rtdb.firebaseio.com/products.json');
+    final url = Uri.parse('https://shop-app-903e5-default-rtdb.firebaseio.com/products');
     return http
         .post(
       url,
@@ -92,6 +92,9 @@ class Products with ChangeNotifier {
       // _items.insert(0, newProduct); // at the start of the list
       notifyListeners();
 
+    }).catchError((error){
+      print(error);
+      throw error;
     });
 
 
