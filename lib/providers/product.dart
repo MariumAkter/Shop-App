@@ -8,7 +8,7 @@ class Product with ChangeNotifier {
   final String imageUrl;
   bool isFavorite;
 
-  Product({
+   Product ({
     required this.id,
     required this.title,
     required this.description,
@@ -18,7 +18,9 @@ class Product with ChangeNotifier {
   });
 
   void toggleFavoriteStatus() {
-    isFavorite = !isFavorite;
+    isFavorite = isFavorite;
     notifyListeners();
   }
+
+
 }
