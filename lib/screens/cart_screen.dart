@@ -90,7 +90,7 @@ class _OrderButtonState extends State<OrderButton> {
           widget.cart.totalAmount,
         );
         setState(() {
-          _isLoading = true;
+          _isLoading = false;
         });
         widget.cart.clear();
       },
