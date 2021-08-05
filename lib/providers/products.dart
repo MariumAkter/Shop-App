@@ -77,7 +77,7 @@ class Products with ChangeNotifier {
     var url = Uri.parse('https://shop-app-903e5-default-rtdb.firebaseio.com/products.json?auth=$authToken&&filterString');
     try{
       final response = await http.get(url);
-      final extractedData = json.decode(response.body) as Map<String, dynamic>?;
+      dynamic extractedData = json.decode(response.body);
       if (extractedData == null){
         return;
       }
@@ -98,8 +98,11 @@ class Products with ChangeNotifier {
       _items = loadedProducts;
       notifyListeners();
     }
-    catch (error){
-      throw error;
+    // catch (error){
+    //   throw error;
+    // }
+    catch (error) {
+      return;
     }
   }
   Future<void> addProduct(Product product) async {
