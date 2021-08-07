@@ -10,10 +10,9 @@ class UserProductsScreen extends StatelessWidget {
   static const routeName = '/user-products';
 
   Future<void>_refreshProducts(BuildContext context) async{
-     {
-    await Provider.of<Products>(context, listen: false).fetchAndSetProducts(true);
+    await Provider.of<Products>(context, listen: false)
+        .fetchAndSetProducts(true);
   }
-        }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +34,9 @@ class UserProductsScreen extends StatelessWidget {
       body: FutureBuilder(
         future: _refreshProducts(context),
         builder: (ctx, snapshot) =>
-        snapshot.connectionState == ConnectionState.waiting ? Center(
-          child: CircularProgressIndicator(),
+        snapshot.connectionState == ConnectionState.waiting
+            ? Center(
+                  child: CircularProgressIndicator(),
         )
           :  RefreshIndicator(
           onRefresh: () => _refreshProducts(context),

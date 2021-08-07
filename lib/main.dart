@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -34,10 +33,9 @@ class MyApp extends StatelessWidget {
                auth.token,
                auth.userId,
                previousProducts == null ? []
-                   : previousProducts.items),
+                   : previousProducts.items,
+           ),
        ),
-
-
         ChangeNotifierProvider.value(
           value: Cart(),
         ),
@@ -50,18 +48,24 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child:Consumer<Auth>(
-        builder: (ctx, auth, _) => MaterialApp(
-            title: 'MyShop',
-            theme: ThemeData(
-              primarySwatch: Colors.purple,
-              accentColor: Colors.deepOrange,
-              fontFamily: 'Lato',
+        builder: (ctx, auth, _) =>
+            MaterialApp(
+                   title: 'My Shopping',
+                   debugShowCheckedModeBanner: false,
+                   theme: ThemeData(
+                      primarySwatch: Colors.purple,
+                        accentColor: Colors.deepOrange,
+                          fontFamily: 'Lato',
             ),
-            home: auth.isAuth ? ProductsOverviewScreen()
-                : FutureBuilder(future: auth.tryAutoLogin(),
-              builder:  (ctx, authResultSnapshot) =>
-              authResultSnapshot.connectionState == ConnectionState.waiting
-                  ? SplashScreen() :  AuthScreen(),
+            home: auth.isAuth
+                ? ProductsOverviewScreen()
+                : FutureBuilder(
+                    future: auth.tryAutoLogin(),
+                    builder:  (ctx, authResultSnapshot) =>
+                        authResultSnapshot.connectionState ==
+                            ConnectionState.waiting
+                            ? SplashScreen()
+                            : AuthScreen(),
             ),
             routes: {
               ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),

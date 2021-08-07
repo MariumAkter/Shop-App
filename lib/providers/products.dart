@@ -73,7 +73,7 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
   Future<void> fetchAndSetProducts([bool filterByUser = false]) async{
-   final filterString = filterByUser ? 'final filterString = filterByUser ?' : '' ;
+   final filterString = filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
     var url = Uri.parse('https://shop-app-903e5-default-rtdb.firebaseio.com/products.json?auth=$authToken&&filterString');
     try{
       final response = await http.get(url);
@@ -91,7 +91,8 @@ class Products with ChangeNotifier {
           title: prodData['title'],
           description: prodData['description'],
           price: prodData['price'],
-          isFavorite: favoriteData == null ? false : favoriteData[prodId] ?? false,
+          isFavorite:
+              favoriteData == null ? false : favoriteData[prodId] ?? false,
           imageUrl: prodData['imageUrl'],
         ));
       });
